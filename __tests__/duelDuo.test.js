@@ -9,7 +9,7 @@ beforeEach(async () => {
 afterEach(async () => {
   setTimeout(() => { 
     driver.quit();
-  },4000)
+  },3000)
 });
 
 describe("Duel Duo tests", () => {
