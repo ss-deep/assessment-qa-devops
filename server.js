@@ -52,6 +52,7 @@ app.get("/api/robots", (req, res) => {
   try {
     res.status(200).send(botsArr);
   } catch (error) {
+    rollbar.critical('No data found!')
     console.error("ERROR GETTING BOTS", error);
     res.sendStatus(400);
   }
@@ -60,6 +61,7 @@ app.get("/api/robots", (req, res) => {
 app.get("/api/robots/shuffled", (req, res) => {
   try {
     let shuffled = shuffle(bots);
+    rollbar.info("Getting bots for you!")
     res.status(200).send(shuffled);
   } catch (error) {
     console.error("ERROR GETTING SHUFFLED BOTS", error);
@@ -85,6 +87,7 @@ app.post("/api/duel", (req, res) => {
       res.status(200).send("You won!");
     }
   } catch (error) {
+    rollbar.warning("Dueling Error.")
     console.log("ERROR DUELING", error);
     res.sendStatus(400);
   }
@@ -94,6 +97,7 @@ app.get("/api/player", (req, res) => {
   try {
     res.status(200).send(playerRecord);
   } catch (error) {
+    rollbar.error("Did you win or loose?")
     console.log("ERROR GETTING PLAYER STATS", error);
     res.sendStatus(400);
   }
